@@ -1,0 +1,1140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mayowa Ukuhor — Data Analyst</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --surface: #111118;
+    --surface2: #1a1a24;
+    --accent: #00e5a0;
+    --accent2: #7c6aff;
+    --accent3: #ff6b35;
+    --text: #f0eff8;
+    --muted: #6b6a80;
+    --border: rgba(255,255,255,0.07);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* NOISE TEXTURE */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.4;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 1.2rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(10,10,15,0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.1rem;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    text-decoration: none;
+  }
+
+  .nav-logo span { color: var(--accent); }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--accent); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 8rem 3rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: 
+      radial-gradient(ellipse 60% 50% at 70% 50%, rgba(0,229,160,0.06) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 60% at 20% 80%, rgba(124,106,255,0.08) 0%, transparent 60%);
+  }
+
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image: 
+      linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%);
+  }
+
+  .hero-content {
+    max-width: 900px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(0,229,160,0.1);
+    border: 1px solid rgba(0,229,160,0.2);
+    color: var(--accent);
+    padding: 0.35rem 1rem;
+    border-radius: 100px;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    animation: fadeUp 0.8s ease both;
+  }
+
+  .hero-tag::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+
+  .hero h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(3rem, 7vw, 6rem);
+    font-weight: 800;
+    line-height: 1.0;
+    letter-spacing: -0.03em;
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.8s 0.1s ease both;
+  }
+
+  .hero h1 .line2 {
+    display: block;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(255,255,255,0.3);
+  }
+
+  .hero h1 .accent { color: var(--accent); }
+
+  .hero-desc {
+    font-size: 1.1rem;
+    color: var(--muted);
+    max-width: 520px;
+    margin-bottom: 2.5rem;
+    animation: fadeUp 0.8s 0.2s ease both;
+    line-height: 1.8;
+  }
+
+  .hero-ctas {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    animation: fadeUp 0.8s 0.3s ease both;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: #0a0a0f;
+    padding: 0.8rem 2rem;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: all 0.2s;
+    letter-spacing: 0.01em;
+  }
+
+  .btn-primary:hover {
+    background: #00ffb3;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(0,229,160,0.3);
+  }
+
+  .btn-outline {
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 0.8rem 2rem;
+    border-radius: 6px;
+    font-weight: 400;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+
+  .btn-outline:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    transform: translateY(-2px);
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 3rem;
+    margin-top: 4rem;
+    padding-top: 3rem;
+    border-top: 1px solid var(--border);
+    animation: fadeUp 0.8s 0.4s ease both;
+  }
+
+  .stat-item {}
+  .stat-number {
+    font-family: 'Syne', sans-serif;
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--text);
+    line-height: 1;
+  }
+  .stat-number span { color: var(--accent); }
+  .stat-label {
+    font-size: 0.8rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-top: 0.3rem;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* SKILLS TICKER */
+  .ticker-wrap {
+    overflow: hidden;
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 1rem 0;
+  }
+
+  .ticker {
+    display: flex;
+    gap: 0;
+    animation: ticker 25s linear infinite;
+    width: max-content;
+  }
+
+  .ticker-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0 2.5rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    white-space: nowrap;
+  }
+
+  .ticker-item::after {
+    content: '◆';
+    color: var(--accent);
+    font-size: 0.5rem;
+  }
+
+  @keyframes ticker {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* SECTIONS */
+  section {
+    padding: 6rem 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+    line-height: 1.1;
+  }
+
+  .section-sub {
+    color: var(--muted);
+    font-size: 1rem;
+    max-width: 500px;
+    margin-bottom: 3.5rem;
+  }
+
+  /* TOOLS GRID */
+  .tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1rem;
+    margin-bottom: 5rem;
+  }
+
+  .tool-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.5rem 1rem;
+    text-align: center;
+    transition: all 0.25s;
+    cursor: default;
+  }
+
+  .tool-card:hover {
+    border-color: var(--accent);
+    background: rgba(0,229,160,0.05);
+    transform: translateY(-3px);
+  }
+
+  .tool-icon {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+
+  .tool-name {
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--text);
+  }
+
+  .tool-type {
+    font-size: 0.72rem;
+    color: var(--muted);
+    margin-top: 0.2rem;
+  }
+
+  /* PROJECTS */
+  .projects-grid {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .project-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr 1.8fr;
+    transition: all 0.3s;
+    min-height: 260px;
+  }
+
+  .project-card:hover {
+    border-color: rgba(0,229,160,0.3);
+    transform: translateY(-3px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+  }
+
+  .project-card.featured {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+  }
+
+  .project-visual {
+    background: var(--surface2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    min-height: 220px;
+  }
+
+  .project-visual-bg {
+    position: absolute;
+    inset: 0;
+  }
+
+  .viz-youtube { background: linear-gradient(135deg, #0f2027 0%, #1a0a2e 50%, #0d1a0f 100%); }
+  .viz-loan { background: linear-gradient(135deg, #0a1628 0%, #1a2a0a 50%, #0a1020 100%); }
+  .viz-pizza { background: linear-gradient(135deg, #1a0a00 0%, #2a1000 50%, #1a0505 100%); }
+  .viz-sql { background: linear-gradient(135deg, #0a0a1a 0%, #0a1a2a 50%, #050a1a 100%); }
+
+  .project-mockup {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 280px;
+  }
+
+  .mock-screen {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px;
+    padding: 1rem;
+    font-size: 0.65rem;
+    color: rgba(255,255,255,0.6);
+  }
+
+  .mock-bar {
+    height: 6px;
+    border-radius: 3px;
+    margin-bottom: 0.4rem;
+    background: var(--accent);
+    opacity: 0.7;
+  }
+
+  .mock-bar.b2 { width: 70%; background: var(--accent2); }
+  .mock-bar.b3 { width: 45%; background: var(--accent3); }
+  .mock-bar.b4 { width: 85%; }
+  .mock-bar.b5 { width: 55%; background: var(--accent2); }
+
+  .mock-kpis {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.4rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .mock-kpi {
+    background: rgba(255,255,255,0.05);
+    border-radius: 4px;
+    padding: 0.3rem 0.5rem;
+  }
+
+  .mock-kpi-val {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--accent);
+  }
+
+  .mock-kpi-label {
+    font-size: 0.5rem;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  .mock-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.6rem;
+    letter-spacing: 0.05em;
+  }
+
+  .project-info {
+    padding: 2rem 2.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .tag {
+    background: rgba(124,106,255,0.15);
+    border: 1px solid rgba(124,106,255,0.25);
+    color: #a99fff;
+    padding: 0.2rem 0.7rem;
+    border-radius: 100px;
+    font-size: 0.72rem;
+    font-weight: 500;
+  }
+
+  .tag.green {
+    background: rgba(0,229,160,0.1);
+    border-color: rgba(0,229,160,0.2);
+    color: var(--accent);
+  }
+
+  .tag.orange {
+    background: rgba(255,107,53,0.1);
+    border-color: rgba(255,107,53,0.2);
+    color: #ff9a75;
+  }
+
+  .project-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 0.7rem;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+  }
+
+  .project-desc {
+    color: var(--muted);
+    font-size: 0.9rem;
+    line-height: 1.75;
+    margin-bottom: 1.5rem;
+  }
+
+  .project-outcomes {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .outcome {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    font-size: 0.85rem;
+    color: var(--text);
+  }
+
+  .outcome::before {
+    content: '→';
+    color: var(--accent);
+    font-weight: 600;
+    flex-shrink: 0;
+    margin-top: 0.05rem;
+  }
+
+  .project-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: gap 0.2s;
+  }
+
+  .project-link:hover { gap: 0.8rem; }
+
+  /* EXPERIENCE */
+  .exp-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .exp-item {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 2rem;
+    padding: 2rem 0;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+  }
+
+  .exp-item::before {
+    content: '';
+    position: absolute;
+    left: 160px;
+    top: 0; bottom: 0;
+    width: 1px;
+    background: var(--border);
+  }
+
+  .exp-item:first-child { padding-top: 0; }
+
+  .exp-date {
+    font-size: 0.8rem;
+    color: var(--muted);
+    padding-top: 0.3rem;
+    font-weight: 400;
+  }
+
+  .exp-current {
+    display: inline-block;
+    background: rgba(0,229,160,0.1);
+    color: var(--accent);
+    font-size: 0.7rem;
+    padding: 0.15rem 0.6rem;
+    border-radius: 100px;
+    margin-top: 0.4rem;
+    font-weight: 500;
+  }
+
+  .exp-role {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.2rem;
+  }
+
+  .exp-company {
+    color: var(--accent2);
+    font-size: 0.88rem;
+    margin-bottom: 0.8rem;
+    font-weight: 400;
+  }
+
+  .exp-desc {
+    color: var(--muted);
+    font-size: 0.88rem;
+    line-height: 1.7;
+  }
+
+  /* CERTIFICATIONS */
+  .certs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+  }
+
+  .cert-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    transition: all 0.25s;
+  }
+
+  .cert-card:hover {
+    border-color: rgba(0,229,160,0.3);
+    transform: translateY(-2px);
+  }
+
+  .cert-icon {
+    width: 40px; height: 40px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+  }
+
+  .cert-icon.google { background: rgba(66,133,244,0.15); }
+  .cert-icon.aig { background: rgba(0,229,160,0.1); }
+
+  .cert-name {
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 0.2rem;
+    line-height: 1.3;
+  }
+
+  .cert-issuer {
+    font-size: 0.78rem;
+    color: var(--muted);
+  }
+
+  .cert-date {
+    font-size: 0.72rem;
+    color: var(--accent);
+    margin-top: 0.3rem;
+    font-weight: 500;
+  }
+
+  /* CTA SECTION */
+  .cta-section {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 4rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    margin: 0 3rem 6rem;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .cta-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(0,229,160,0.05) 0%, transparent 70%);
+  }
+
+  .cta-section h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+    position: relative;
+  }
+
+  .cta-section p {
+    color: var(--muted);
+    max-width: 480px;
+    margin: 0 auto 2rem;
+    position: relative;
+  }
+
+  .cta-links {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    position: relative;
+  }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--muted);
+    font-size: 0.82rem;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 2rem;
+  }
+
+  .footer-links a {
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--accent); }
+
+  /* SCROLL REVEAL */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .hero { padding: 7rem 1.5rem 3rem; }
+    section { padding: 4rem 1.5rem; }
+    .project-card { grid-template-columns: 1fr; }
+    .project-visual { min-height: 160px; }
+    .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
+    .exp-item::before { display: none; }
+    .hero-stats { gap: 1.5rem; flex-wrap: wrap; }
+    .cta-section { padding: 2.5rem 1.5rem; margin: 0 1.5rem 4rem; }
+    footer { flex-direction: column; gap: 1rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Mayowa<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#certifications">Certifications</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-tag">Available for Remote Work</div>
+    <h1>
+      Data Analyst
+      <span class="line2">turning numbers</span>
+      into <span class="accent">decisions.</span>
+    </h1>
+    <p class="hero-desc">
+      I build end-to-end analytics pipelines — from SQL queries and Python scraping to Power BI dashboards and Looker Studio reports. Finance, insurance, and digital analytics.
+    </p>
+    <div class="hero-ctas">
+      <a href="#projects" class="btn-primary">View My Work</a>
+      <a href="https://www.linkedin.com/in/faith3656" target="_blank" class="btn-outline">LinkedIn ↗</a>
+      <a href="https://github.com/faith3656" target="_blank" class="btn-outline">GitHub ↗</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-number">3<span>+</span></div>
+        <div class="stat-label">Years Experience</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">5<span>M</span></div>
+        <div class="stat-label">Views Driven</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">4</div>
+        <div class="stat-label">Portfolio Projects</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">6</div>
+        <div class="stat-label">Tools Mastered</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker">
+    <div class="ticker-item">SQL</div>
+    <div class="ticker-item">Power BI</div>
+    <div class="ticker-item">Microsoft Excel</div>
+    <div class="ticker-item">Google Looker Studio</div>
+    <div class="ticker-item">Python</div>
+    <div class="ticker-item">Google Sheets</div>
+    <div class="ticker-item">Data Visualization</div>
+    <div class="ticker-item">Financial Analytics</div>
+    <div class="ticker-item">Insurance Analytics</div>
+    <div class="ticker-item">Dashboard Design</div>
+    <div class="ticker-item">SQL</div>
+    <div class="ticker-item">Power BI</div>
+    <div class="ticker-item">Microsoft Excel</div>
+    <div class="ticker-item">Google Looker Studio</div>
+    <div class="ticker-item">Python</div>
+    <div class="ticker-item">Google Sheets</div>
+    <div class="ticker-item">Data Visualization</div>
+    <div class="ticker-item">Financial Analytics</div>
+    <div class="ticker-item">Insurance Analytics</div>
+    <div class="ticker-item">Dashboard Design</div>
+  </div>
+</div>
+
+<!-- TOOLS -->
+<section id="skills" style="padding-bottom: 0;">
+  <div class="reveal">
+    <div class="section-label">Toolkit</div>
+    <h2 class="section-title">Tools & Technologies</h2>
+    <p class="section-sub">Full-stack analytics capability across data extraction, transformation, and visualization.</p>
+  </div>
+  <div class="tools-grid reveal">
+    <div class="tool-card"><span class="tool-icon">🐍</span><div class="tool-name">Python</div><div class="tool-type">Web Scraping · Automation</div></div>
+    <div class="tool-card"><span class="tool-icon">🗄️</span><div class="tool-name">SQL</div><div class="tool-type">Queries · Aggregations · Joins</div></div>
+    <div class="tool-card"><span class="tool-icon">📊</span><div class="tool-name">Power BI</div><div class="tool-type">Dashboards · KPIs · Reports</div></div>
+    <div class="tool-card"><span class="tool-icon">📈</span><div class="tool-name">Excel</div><div class="tool-type">Pivot Tables · Slicers · Charts</div></div>
+    <div class="tool-card"><span class="tool-icon">🔍</span><div class="tool-name">Looker Studio</div><div class="tool-type">Digital Analytics · Reporting</div></div>
+    <div class="tool-card"><span class="tool-icon">📋</span><div class="tool-name">Google Sheets</div><div class="tool-type">Data Processing · Analysis</div></div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="reveal">
+    <div class="section-label">Portfolio</div>
+    <h2 class="section-title">Selected Projects</h2>
+    <p class="section-sub">Real problems. Real data. Real business outcomes.</p>
+  </div>
+
+  <div class="projects-grid">
+
+    <!-- PROJECT 1: YouTube -->
+    <div class="project-card reveal">
+      <div class="project-visual viz-youtube">
+        <div class="project-mockup">
+          <div class="mock-title">234DRIVE YOUTUBE ANALYSIS</div>
+          <div class="mock-kpis">
+            <div class="mock-kpi"><div class="mock-kpi-val">6.3M</div><div class="mock-kpi-label">Total Views</div></div>
+            <div class="mock-kpi"><div class="mock-kpi-val">5%</div><div class="mock-kpi-label">Engagement</div></div>
+            <div class="mock-kpi"><div class="mock-kpi-val">290</div><div class="mock-kpi-label">Videos</div></div>
+            <div class="mock-kpi"><div class="mock-kpi-val">237K</div><div class="mock-kpi-label">Likes</div></div>
+          </div>
+          <div class="mock-screen">
+            <div style="margin-bottom:0.5rem;font-size:0.6rem;color:rgba(255,255,255,0.4)">Views by Day of Week</div>
+            <div class="mock-bar b4" style="width:90%"></div>
+            <div class="mock-bar b2" style="width:65%"></div>
+            <div class="mock-bar b3" style="width:50%"></div>
+            <div class="mock-bar" style="width:75%"></div>
+            <div class="mock-bar b5" style="width:40%"></div>
+          </div>
+        </div>
+      </div>
+      <div class="project-info">
+        <div class="project-tags">
+          <span class="tag green">Python</span>
+          <span class="tag green">Looker Studio</span>
+          <span class="tag">Google Sheets</span>
+        </div>
+        <div class="project-title">234Drive YouTube Channel Analytics</div>
+        <p class="project-desc">End-to-end analytics pipeline built to optimize content strategy for Nigeria's leading automotive YouTube channel. Scraped 290 videos using Python, processed in Google Sheets, and visualized in Looker Studio.</p>
+        <div class="project-outcomes">
+          <div class="outcome">Identified optimal posting days and session times driving highest engagement</div>
+          <div class="outcome">Contributed to channel growth from 2.9M to 5M monthly views</div>
+          <div class="outcome">Analyzed 6.3M total views, 237K likes across video and short formats</div>
+        </div>
+        <a href="https://lookerstudio.google.com/u/3/reporting/a2fcfee9-8b2c-44e9-ad32-33ef19891e3f/page/6N0cE" target="_blank" class="project-link">View Live Dashboard →</a>
+      </div>
+    </div>
+
+    <!-- PROJECT 2: Bank Loan -->
+    <div class="project-card reveal">
+      <div class="project-visual viz-loan">
+        <div class="project-mockup">
+          <div class="mock-title">BANK LOAN REPORT</div>
+          <div class="mock-kpis">
+            <div class="mock-kpi"><div class="mock-kpi-val">86%</div><div class="mock-kpi-label">Good Loans</div></div>
+            <div class="mock-kpi"><div class="mock-kpi-val">14%</div><div class="mock-kpi-label">Bad Loans</div></div>
+          </div>
+          <div class="mock-screen">
+            <div style="margin-bottom:0.5rem;font-size:0.6rem;color:rgba(255,255,255,0.4)">Loan Performance Metrics</div>
+            <div class="mock-bar" style="width:86%;"></div>
+            <div class="mock-bar b3" style="width:14%;"></div>
+            <div style="margin-top:0.5rem;font-size:0.6rem;color:rgba(255,255,255,0.3)">DTI · Interest Rate · MoM Trends</div>
+          </div>
+        </div>
+      </div>
+      <div class="project-info">
+        <div class="project-tags">
+          <span class="tag green">SQL</span>
+          <span class="tag">Excel</span>
+          <span class="tag orange">Financial Analytics</span>
+        </div>
+        <div class="project-title">Bank Loan Portfolio Report</div>
+        <p class="project-desc">Comprehensive lending analytics dashboard tracking portfolio health, risk exposure, and borrower financial profiles. Built using SQL for data extraction and Excel for advanced visualization.</p>
+        <div class="project-outcomes">
+          <div class="outcome">Classified loan portfolio into Good (86%) vs Bad (14%) loan segments</div>
+          <div class="outcome">Built MTD and MoM KPI tracking for funded amounts, interest rates, and DTI</div>
+          <div class="outcome">Geographic state-level analysis via filled map using pivot tables and slicers</div>
+        </div>
+        <a href="https://faithukuhor.blogspot.com/p/bank-loan-report-detailed-overview-of.html" target="_blank" class="project-link">View Project →</a>
+      </div>
+    </div>
+
+    <!-- PROJECT 3: Pizza -->
+    <div class="project-card reveal">
+      <div class="project-visual viz-pizza">
+        <div class="project-mockup">
+          <div class="mock-title">PIZZA SALES ANALYSIS</div>
+          <div class="mock-kpis">
+            <div class="mock-kpi"><div class="mock-kpi-val">$208K</div><div class="mock-kpi-label">Revenue</div></div>
+            <div class="mock-kpi"><div class="mock-kpi-val">11,987</div><div class="mock-kpi-label">Orders</div></div>
+            <div class="mock-kpi"><div class="mock-kpi-val">1.32</div><div class="mock-kpi-label">Avg/Order</div></div>
+            <div class="mock-kpi"><div class="mock-kpi-val">$38.31</div><div class="mock-kpi-label">Avg Value</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="project-info">
+        <div class="project-tags">
+          <span class="tag green">SQL</span>
+          <span class="tag green">Power BI</span>
+          <span class="tag orange">Business Analytics</span>
+        </div>
+        <div class="project-title">Dodo Pizza Sales Performance Analysis</div>
+        <p class="project-desc">Full business intelligence solution for pizza chain operations. 15+ SQL queries for KPI calculation, two interactive Power BI dashboards for trend analysis and product performance.</p>
+        <div class="project-outcomes">
+          <div class="outcome">Calculated 5 core KPIs including CLV, average order value, and revenue breakdown</div>
+          <div class="outcome">Identified Friday/Saturday evenings as peak demand — informing staffing strategy</div>
+          <div class="outcome">Ranked top 5 and bottom 5 products by revenue, quantity, and total orders</div>
+        </div>
+        <a href="https://faithukuhor.blogspot.com" target="_blank" class="project-link">View Project →</a>
+      </div>
+    </div>
+
+    <!-- PROJECT 4: SQL Assessment -->
+    <div class="project-card reveal">
+      <div class="project-visual viz-sql">
+        <div class="project-mockup">
+          <div class="mock-title">SQL ASSESSMENT</div>
+          <div class="mock-screen" style="font-family:monospace;font-size:0.6rem;color:rgba(0,229,160,0.7);line-height:1.6">
+            <div><span style="color:#7c6aff">SELECT</span> customer_id,</div>
+            <div>&nbsp;&nbsp;SUM(deposit) <span style="color:#7c6aff">AS</span> total,</div>
+            <div>&nbsp;&nbsp;tenure_months</div>
+            <div><span style="color:#7c6aff">FROM</span> savings_account</div>
+            <div><span style="color:#7c6aff">JOIN</span> users <span style="color:#7c6aff">ON</span> ...</div>
+            <div><span style="color:#7c6aff">GROUP BY</span> customer_id</div>
+            <div><span style="color:#7c6aff">ORDER BY</span> total <span style="color:#7c6aff">DESC</span>;</div>
+          </div>
+        </div>
+      </div>
+      <div class="project-info">
+        <div class="project-tags">
+          <span class="tag green">SQL</span>
+          <span class="tag">Fintech</span>
+          <span class="tag orange">CLV Modeling</span>
+        </div>
+        <div class="project-title">Financial Customer Analytics — SQL Assessment</div>
+        <p class="project-desc">Four advanced SQL problems solving real fintech business challenges across customer segmentation, transaction analysis, inactivity detection, and lifetime value estimation.</p>
+        <div class="project-outcomes">
+          <div class="outcome">High-value customer identification using multi-table JOINs and aggregation</div>
+          <div class="outcome">Transaction frequency segmentation (High/Medium/Low) with NULL date handling</div>
+          <div class="outcome">CLV formula implementation: (transactions/tenure) × 12 × avg_profit</div>
+        </div>
+        <a href="https://github.com/faith3656/DataAnalytics-Assessment" target="_blank" class="project-link">View on GitHub →</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="reveal">
+    <div class="section-label">Background</div>
+    <h2 class="section-title">Work Experience</h2>
+    <p class="section-sub">3+ years analyzing real business data across fintech, automotive media, and tech.</p>
+  </div>
+  <div class="exp-list reveal">
+    <div class="exp-item">
+      <div>
+        <div class="exp-date">Nov 2024 — Present</div>
+        <div class="exp-current">Current</div>
+      </div>
+      <div>
+        <div class="exp-role">Data Analyst</div>
+        <div class="exp-company">234Drive · Contract Full-time · Lagos, Nigeria</div>
+        <div class="exp-desc">Built end-to-end YouTube analytics pipeline using Python web scraping, Google Sheets processing, and Looker Studio dashboards. Contributed to growing channel views from 2.9M to 5M monthly through data-driven content strategy insights.</div>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div>
+        <div class="exp-date">Oct 2020 — Mar 2025</div>
+      </div>
+      <div>
+        <div class="exp-role">Data Analyst</div>
+        <div class="exp-company">Unitech · Full-time · Lagos, Nigeria</div>
+        <div class="exp-desc">Analyzed transaction patterns and customer behavior across loan application data. Identified friction points in the customer journey informing product improvements. Built financial reports tracking portfolio performance and repayment trends.</div>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div>
+        <div class="exp-date">2023 — 2024</div>
+      </div>
+      <div>
+        <div class="exp-role">Data Annotation Expert</div>
+        <div class="exp-company">Meta · Freelance · Remote</div>
+        <div class="exp-desc">Annotated over 20,000 data points using Labelbox, Rectlabel, and Supervisely, achieving 98% accuracy. Contributed to AI model training datasets for Meta's machine learning pipelines.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="reveal">
+    <div class="section-label">Credentials</div>
+    <h2 class="section-title">Licenses & Certifications</h2>
+  </div>
+  <div class="certs-grid reveal">
+    <div class="cert-card">
+      <div class="cert-icon google">🎓</div>
+      <div>
+        <div class="cert-name">Google Data Analytics Certificate</div>
+        <div class="cert-issuer">Google / Coursera</div>
+        <div class="cert-date">Issued 2024</div>
+      </div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-icon aig">🛡️</div>
+      <div>
+        <div class="cert-name">AIG — Claims Job Simulation</div>
+        <div class="cert-issuer">Forage</div>
+        <div class="cert-date">Issued Mar 2026</div>
+      </div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-icon aig">📋</div>
+      <div>
+        <div class="cert-name">AIG — Underwriting Job Simulation</div>
+        <div class="cert-issuer">Forage</div>
+        <div class="cert-date">Issued Feb 2026</div>
+      </div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-icon" style="background:rgba(255,107,53,0.1)">🎓</div>
+      <div>
+        <div class="cert-name">Bachelor's Degree — Insurance</div>
+        <div class="cert-issuer">University of Lagos</div>
+        <div class="cert-date">Graduated 2023</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-section reveal" id="contact">
+  <h2>Let's work together.</h2>
+  <p>Open to remote data analyst roles, freelance dashboard projects, and contract analytics work.</p>
+  <div class="cta-links">
+    <a href="mailto:faithukuh@gmail.com" class="btn-primary">Get In Touch</a>
+    <a href="https://www.linkedin.com/in/faith3656" target="_blank" class="btn-outline">LinkedIn ↗</a>
+    <a href="https://github.com/faith3656" target="_blank" class="btn-outline">GitHub ↗</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2026 Mayowa Ukuhor · Data Analyst</span>
+  <div class="footer-links">
+    <a href="https://www.linkedin.com/in/faith3656" target="_blank">LinkedIn</a>
+    <a href="https://github.com/faith3656" target="_blank">GitHub</a>
+    <a href="https://faithukuhor.blogspot.com" target="_blank">Blog</a>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target
