@@ -245,7 +245,7 @@
   }
 
   @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(24px); }
+    from { opacity: 1; transform: translateY(24px); }
     to { opacity: 1; transform: translateY(0); }
   }
 
@@ -756,8 +756,8 @@
 
   /* SCROLL REVEAL */
   .reveal {
-    opacity: 0;
-    transform: translateY(30px);
+    opacity: 1;
+    transform: translateY(0);
     transition: all 0.7s ease;
   }
 
@@ -1115,7 +1115,7 @@
   <h2>Let's work together.</h2>
   <p>Open to remote data analyst roles, freelance dashboard projects, and contract analytics work.</p>
   <div class="cta-links">
-    <a href="mailto:faithukuh@gmail.com" class="btn-primary">Get In Touch</a>
+    <a href="/cdn-cgi/l/email-protection#7e181f170a160b150b163e19131f1712501d1113" class="btn-primary">Get In Touch</a>
     <a href="https://www.linkedin.com/in/faith3656" target="_blank" class="btn-outline">LinkedIn ↗</a>
     <a href="https://github.com/faith3656" target="_blank" class="btn-outline">GitHub ↗</a>
   </div>
@@ -1131,10 +1131,7 @@
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   // Scroll reveal
   const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry, i) => {
-      if (entry.isIntersecting) {
-        setTimeout(() => entry.target
+  const observer
